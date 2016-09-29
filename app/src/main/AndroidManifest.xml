@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="qianfeng.a5_1broadcastreceiver2_application">
+
+    <!-- 注意自定义的权限中的name属性，自定义的name字符串中必须包含'.' !!!例如custom.qianfeng-->
+    <permission android:name="custom.qianfeng" android:protectionLevel="signature"></permission>
+
+    <uses-permission android:name="custom.qianfeng"></uses-permission>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!--
+            exported="false" 是否将本广播暴露在第三方应用上，默认是true，设定为false表示只能在本应用中给本应用发送广播
+        -->
+        <receiver android:name=".MyBroadcastReceiver" android:exported="false">
+            <intent-filter>
+                <action android:name="qianfeng.android"></action>
+            </intent-filter>
+        </receiver>
+        <!--
+            filter里面有一个属性 priority是 指定广播的优先级，优先级越大，越先收到广播，优先级的最小值为-999
+        -->
+        <receiver android:name=".MyBroadcast3">
+            <intent-filter android:priority="1">
+                <action android:name="android.android">
+
+                </action>
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".MyBroadcast4">
+            <intent-filter android:priority="2">
+                <action android:name="android.android"></action>
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".MyBroadcast5">
+            <intent-filter android:priority="3">
+                <action android:name="android.android"></action>
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>
